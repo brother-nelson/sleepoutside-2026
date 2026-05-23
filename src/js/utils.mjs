@@ -28,6 +28,32 @@ export function getParam(param) {
   return urlParams.get(param);
 }
 
+export async function loadTemplate(path) {
+  const res = await fetch(path);
+  if (res.ok) {
+    return res.text();
+  } else {
+    throw new Error("Bad Response");
+  }
+}
+
+export function renderWithTemplate(template, parentElement, data, callback) {
+  parentElement.insertAdjacentHTML("afterbegin", template);
+  if (callback) {
+    callback(data);
+  }
+}
+
+// function loadTemplateForId(templatePath, id)
+
+export async function loadHeaderFooter() {
+  const header = await loadTemplate("/partials/header.html");
+  const footer = await loadTemplate("/partials/footer.html");
+
+  renderWithTemplate(header, document.getElementById("header"));
+  renderWithTemplate(footer, document.getElementById("footer"));
+}
+
 export function renderListWithTemplate(
   templateFn,
   parentElement,
