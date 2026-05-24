@@ -261,3 +261,25 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.product-listing {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.product-listing > a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-listing > a img {
+  width: 100px;
+}
+
+#product-category {
+  text-transform: capitalize;
+}
+
